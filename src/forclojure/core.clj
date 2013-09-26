@@ -733,6 +733,18 @@
      (-> [2 5 4 1 3 6] reverse rest sort last)
      5))
 
+(defn problem72 []
+  (comment
+    (= (__ (map inc (take 3 (drop 2 [2 5 4 1 3 6]))))
+       (->> [2 5 4 1 3 6] (drop 2) (take 3) (map inc) (__))
+       11))
+  (= (reduce +  (map inc (take 3 (drop 2 [2 5 4 1 3 6]))))
+     (->> [2 5 4 1 3 6] (drop 2) (take 3) (map inc) (reduce +))
+     11))
+
+;TODO: skipped
+(defn problem73 [])
+
 ;TODO: write a function to test whether all problems pass or fail
 (defn test-problems [x])
 
