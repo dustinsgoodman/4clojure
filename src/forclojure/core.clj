@@ -665,8 +665,73 @@
      (= (gcd 5 7) 1)
      (= (gcd 1023 858) 33))))
 
+;TODO: skipped
+(defn problem67 []
+  (comment
+    (= (__ 2) [2 3])
+    (= (__ 5) [2 3 5 7 11])
+    (= (last (__ 100)) 541))
+)
 
+(defn problem68 []
+  (comment
+    (= __
+       (loop [x 5
+              result []]
+         (if (> x 0)
+           (recur (dec x) (conj result (+ 2 x)))
+           result))))
+  (= [7 6 5 4 3]
+     (loop [x 5
+            result []]
+       (if (> x 0)
+         (recur (dec x) (conj result (+ 2 x)))
+         result))))
 
+(defn problem69 []
+  (comment
+    (= (__ * {:a 2, :b 3, :c 4} {:a 2} {:b 2} {:c 5})
+       {:a 4, :b 6, :c 20})
+    (= (__ - {1 10, 2 20} {1 3, 2 10, 3 15})
+       {1 7, 2 10, 3 15})
+    (= (__ concat {:a [3], :b [6]} {:a [4 5], :c [8 9]} {:b [7]})
+       {:a [3 4 5], :b [6 7], :c [8 9]}))
+  (letfn [(my-merge-with [])]
+    (and
+     (= (my-merge-with * {:a 2, :b 3, :c 4} {:a 2} {:b 2} {:c 5})
+        {:a 4, :b 6, :c 20})
+     (= (my-merge-with - {1 10, 2 20} {1 3, 2 10, 3 15})
+        {1 7, 2 10, 3 15})
+     (= (my-merge-with concat {:a [3], :b [6]} {:a [4 5], :c [8 9]} {:b [7]})
+        {:a [3 4 5], :b [6 7], :c [8 9]}))))
+
+(defn problem70 []
+  (comment
+    (= (__  "Have a nice day.")
+       ["a" "day" "Have" "nice"])
+    (= (__  "Clojure is a fun language!")
+       ["a" "Clojure" "fun" "is" "language"])
+    (= (__  "Fools fall for foolish follies.")
+       ["fall" "follies" "foolish" "Fools" "for"]))
+  (letfn [(split-sort [s]
+            (sort-by #(.toLowerCase %)
+                     (re-seq #"[A-Za-z]+" s)))]
+    (and
+     (= (split-sort  "Have a nice day.")
+        ["a" "day" "Have" "nice"])
+     (= (split-sort  "Clojure is a fun language!")
+        ["a" "Clojure" "fun" "is" "language"])
+     (= (split-sort  "Fools fall for foolish follies.")
+        ["fall" "follies" "foolish" "Fools" "for"]))))
+
+(defn problem71 []
+  (comment
+    (= (__ (sort (rest (reverse [2 5 4 1 3 6]))))
+       (-> [2 5 4 1 3 6] reverse rest sort __)
+       5))
+  (= (last (sort (rest (reverse [2 5 4 1 3 6]))))
+     (-> [2 5 4 1 3 6] reverse rest sort last)
+     5))
 
 ;TODO: write a function to test whether all problems pass or fail
 (defn test-problems [x])
