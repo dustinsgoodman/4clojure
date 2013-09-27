@@ -796,6 +796,59 @@
 ;TODO: skipped
 (defn problem78 [])
 
+(defn problem79 [])
+
+(defn problem80 []
+  (comment
+    (= (__ 6) true)
+    (= (__ 7) false)
+    (= (__ 496) true)
+    (= (__ 500) false)
+    (= (__ 8128) true))
+  (letfn [(is-perfect? [n]
+            (= n (apply + (filter #(zero? (mod n %)) (range 1 n)))))]
+    (and
+     (= (is-perfect? 6) true)
+     (= (is-perfect? 7) false)
+     (= (is-perfect? 496) true)
+     (= (is-perfect? 500) false)
+     (= (is-perfect? 8128) true)))())
+
+(defn problem81 []
+  (comment
+    (= (__ #{0 1 2 3} #{2 3 4 5}) #{2 3})
+    (= (__ #{0 1 2} #{3 4 5}) #{})
+    (= (__ #{:a :b :c :d} #{:c :e :a :f :d}) #{:a :c :d}))
+  (letfn [(my-intersection [a b]
+            (into #{} (filter #(contains? b %) a)))]
+    (and
+     (= (my-intersection #{0 1 2 3} #{2 3 4 5}) #{2 3})
+     (= (my-intersection #{0 1 2} #{3 4 5}) #{})
+     (= (my-intersection #{:a :b :c :d} #{:c :e :a :f :d}) #{:a :c :d}))))
+
+;TODO: skipped
+(defn problem82 [])
+
+(defn problem83 []
+  (comment
+    (= false (__ false false))
+    (= true (__ true false))
+    (= false (__ true))
+    (= true (__ false true false))
+    (= false (__ true true true))
+    (= true (__ true true true false)))
+  (letfn [(half-truth [& more]
+            (boolean (and (some true? more) (not-every? true? more))))]
+    (= false (half-truth false false))
+    (= true (half-truth true false))
+    (= false (half-truth true))
+    (= true (half-truth false true false))
+    (= false (half-truth true true true))
+    (= true (half-truth true true true false))))
+
+;TODO: skipped
+(defn problem84 [])
+
 ;TODO: write a function to test whether all problems pass or fail
 (defn test-problems [x])
 
