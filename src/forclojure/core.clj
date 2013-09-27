@@ -745,6 +745,57 @@
 ;TODO: skipped
 (defn problem73 [])
 
+(defn problem74 []
+  (comment
+    (= (__ "4,5,6,7,8,9") "4,9")
+    (= (__ "15,16,25,36,37") "16,25,36"))
+  (letfn [(list-ps [s]
+            (apply str
+                   (interpose ","
+                              (filter #(== (Math/sqrt %) (int (Math/sqrt %)))
+                                      (map #(Integer/parseInt %)
+                                           (re-seq #"[\d]+" s))))))]
+    (and
+     (= (list-ps "4,5,6,7,8,9") "4,9")
+     (= (list-ps "15,16,25,36,37") "16,25,36"))))
+
+(defn problem75 []
+  (comment
+    (= (__ 1) 1)
+    (= (__ 10) (count '(1 3 7 9)) 4)
+    (= (__ 40) 16)
+    (= (__ 99) 60))
+  (letfn [(euler-totient [])]
+    (and
+     (= (euler-totient 1) 1)
+     (= (euler-totient 10) (count '(1 3 7 9)) 4)
+     (= (euler-totient 40) 16)
+     (= (euler-totient 99) 60))))
+
+;TODO: skipped
+(defn problem76 []
+  (comment
+    (= __
+       (letfn
+           [(foo [x y] #(bar (conj x y) y))
+            (bar [x y] (if (> (last x) 10)
+                         x
+                         #(foo x (+ 2 y))))]
+         (trampoline foo [] 1))))
+  (= [1 3 5 7 9 11]
+     (letfn
+         [(foo [x y] #(bar (conj x y) y))
+          (bar [x y] (if (> (last x) 10)
+                       x
+                       #(foo x (+ 2 y))))]
+       (trampoline foo [] 1))))
+
+;TODO: skipped
+(defn problem77 [])
+
+;TODO: skipped
+(defn problem78 [])
+
 ;TODO: write a function to test whether all problems pass or fail
 (defn test-problems [x])
 
