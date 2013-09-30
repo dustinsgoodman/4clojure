@@ -849,6 +849,47 @@
 ;TODO: skipped
 (defn problem84 [])
 
+;TODO: skipped
+(defn problem85 []
+  (comment
+    (= (__ #{1 :a}) #{#{1 :a} #{:a} #{} #{1}})
+    (= (__ #{}) #{#{}})
+    (= (__ #{1 2 3})
+       #{#{} #{1} #{2} #{3} #{1 2} #{1 3} #{2 3} #{1 2 3}})
+    (= (count (__ (into #{} (range 10)))) 1024))
+  (letfn [(power-set [s]
+            (conj (set (for [x s y s] (set [x y]))) #{} s))]
+    (and
+     (= (power-set #{1 :a}) #{#{1 :a} #{:a} #{} #{1}})
+     (= (power-set #{}) #{#{}})
+     (= (power-set #{1 2 3})
+        #{#{} #{1} #{2} #{3} #{1 2} #{1 3} #{2 3} #{1 2 3}})
+     (= (count (power-set (into #{} (range 10)))) 1024))))
+
+;TODO: skipped
+(defn problem86 [])
+
+;problem 87 does not exist
+
+(defn problem88 []
+  (comment
+    (= (__ #{1 2 3 4 5 6} #{1 3 5 7}) #{2 4 6 7})
+    (= (__ #{:a :b :c} #{}) #{:a :b :c})
+    (= (__ #{} #{4 5 6}) #{4 5 6})
+    (= (__ #{[1 2] [2 3]} #{[2 3] [3 4]}) #{[1 2] [3 4]}))
+  (letfn [(sym-diff [a b]
+            (set (concat
+                  (filter (complement a) b)
+                  (filter (complement b) a))))]
+    (and
+     (= (sym-diff #{1 2 3 4 5 6} #{1 3 5 7}) #{2 4 6 7})
+     (= (sym-diff #{:a :b :c} #{}) #{:a :b :c})
+     (= (sym-diff #{} #{4 5 6}) #{4 5 6})
+     (= (sym-diff #{[1 2] [2 3]} #{[2 3] [3 4]}) #{[1 2] [3 4]}))))
+
+;TODO: skipped
+(defn problem89 [])
+
 ;TODO: write a function to test whether all problems pass or fail
 (defn test-problems [x])
 
